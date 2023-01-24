@@ -35,22 +35,64 @@ function makeBook() {
     let author = document.getElementById("author").value;
     let genre = document.getElementById("genre").value;
     let pages = document.getElementById("pages").value;
+    let read = document.getElementById("read").checked;
+    console.log(read)
 
     myLibrary[id] = new Book(title, author, genre, pages);
     id++
 
-        let card = `<div class='card'>
-                        <div class='x-div'>
-                            <p class='del' onclick='deleteBook()'>X</p> 
-                        </div>
-                            <p>${title}</p>
-                            <p>${author}</p>
-                            <p>${genre}</p>
-                            <p>${pages}</p>
-                    </div>`
-                        books.innerHTML += card;
-}
+    let card = document.createElement("div");
+    card.setAttribute("class", "card");
 
+    let xDiv = document.createElement("div");
+    xDiv.setAttribute("class", "x-div");
+
+    let pDelete = document.createElement("P");
+    pDelete.setAttribute("class", "del");
+    pDelete.innerText = "X"
+    pDelete.onclick = function() {deleteBook()}
+
+    let labelCheckDiv = document.createElement("div");
+    labelCheckDiv.setAttribute("class", "read-div");
+
+    let titleP = document.createElement("p");
+    titleP.textContent = title;
+    let authorP = document.createElement("p");
+    authorP.textContent = author;
+    let genreP = document.createElement("p");
+    genreP.textContent = genre;
+    let pagesP = document.createElement("p");
+    pagesP.textContent = pages;
+    let readLabel = document.createElement("label");
+    readLabel.innerText = "Read: "
+    let readCheckBox = document.createElement("input");
+    readCheckBox.setAttribute("type", "checkbox")
+    read ? readCheckBox.setAttribute("checked", "") : ""
+
+    card.append(xDiv);
+    xDiv.append(pDelete);
+    card.append(titleP);
+    card.append(authorP);
+    card.append(genreP);
+    card.append(pagesP);
+    labelCheckDiv.append(readLabel);
+    labelCheckDiv.append(readCheckBox);
+    card.append(labelCheckDiv);
+    books.append(card)
+
+
+        // let card = `<div class='card'>
+        //                 <div class='x-div'>
+        //                     <p class='del' onclick='deleteBook()'>X</p> 
+        //                 </div>
+        //                     <p>${title}</p>
+        //                     <p>${author}</p>
+        //                     <p>${genre}</p>
+        //                     <p>${pages}</p>
+        //                     <p>${read ? setAttribute("checked", "") : ""}</p>
+        //                     </div>`
+        //                     books.innerHTML += card;
+                        }
 function deleteBook() {
     book = event.target.parentElement.parentElement;
 
