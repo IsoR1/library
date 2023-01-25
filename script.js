@@ -1,6 +1,6 @@
+const bookForm = document.querySelector('#book-form')
 const submitBtn = document.querySelector(".submit-book");
 const newBook = document.querySelector(".new-book");
-let addBook = document.querySelector(".submit-book");
 let id = 0;
 let myLibrary = [];
 
@@ -80,20 +80,9 @@ function makeBook() {
     card.append(labelCheckDiv);
     books.append(card)
 
+}
 
-        // let card = `<div class='card'>
-        //                 <div class='x-div'>
-        //                     <p class='del' onclick='deleteBook()'>X</p> 
-        //                 </div>
-        //                     <p>${title}</p>
-        //                     <p>${author}</p>
-        //                     <p>${genre}</p>
-        //                     <p>${pages}</p>
-        //                     <p>${read ? setAttribute("checked", "") : ""}</p>
-        //                     </div>`
-        //                     books.innerHTML += card;
-                        }
-function deleteBook() {
+    function deleteBook() {
     book = event.target.parentElement.parentElement;
 
     book.classList.add('hide-book')
@@ -101,6 +90,9 @@ function deleteBook() {
 }
 
 
-addBook.addEventListener("click", makeBook)
 
+bookForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    makeBook()
+})
 
